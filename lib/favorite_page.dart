@@ -1,18 +1,30 @@
+import 'package:favorite_app/app_utlis/app_ui_const.dart';
+import 'package:favorite_app/favorite_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class FavoritePage extends StatelessWidget {
   const FavoritePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      children: [
-        Text("This is favorite page"),
-        Text("Favorite Page Appbar"),
-        Text("Favorite Top bar"),
-        Text("Listview for title list"),
-        Text("Card view for share details"),
-      ],
+    // Set the status bar color to match the background
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: AppUIConst.moonBlackColor, // Status bar color
+        statusBarIconBrightness:
+            Brightness.light, // For white icons on dark background
+      ),
+    );
+
+    return Scaffold(
+      backgroundColor: AppUIConst.moonBlackColor,
+      body: const SafeArea(
+          child: Column(
+        children: [
+          FavoriteAppbar(),
+        ],
+      )),
     );
   }
 }
