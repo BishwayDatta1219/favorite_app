@@ -1,5 +1,6 @@
 import 'package:favorite_app/app_utlis/app_ui_const.dart';
 import 'package:favorite_app/favorite_appbar.dart';
+import 'package:favorite_app/favorite_menu_screen.dart';
 import 'package:favorite_app/favorite_topbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -25,6 +26,7 @@ class FavoritePage extends StatelessWidget {
         children: [
           FavoriteAppbar(),
           FavoriteTopBar(),
+          FavoriteMenuScreen(),
         ],
       )),
     );
