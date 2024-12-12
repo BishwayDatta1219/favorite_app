@@ -1,5 +1,6 @@
 import 'package:favorite_app/app_utlis/app_ui_const.dart';
 import 'package:favorite_app/favorite_appbar.dart';
+import 'package:favorite_app/favorite_card_view_details.dart';
 import 'package:favorite_app/favorite_menu_screen.dart';
 import 'package:favorite_app/favorite_topbar.dart';
 import 'package:flutter/material.dart';
@@ -22,13 +23,15 @@ class FavoritePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppUIConst.moonBlackColor,
       body: const SafeArea(
-          child: Column(
-        children: [
-          FavoriteAppbar(),
-          FavoriteTopBar(),
-          FavoriteMenuScreen(),
-        ],
-      )),
+        child: Column(
+          children: [
+            FavoriteAppbar(),
+            FavoriteTopBar(),
+            FavoriteMenuScreen(),
+            FavoriteCardViewDetails(),
+          ],
+        ),
+      ),
     );
   }
 }
