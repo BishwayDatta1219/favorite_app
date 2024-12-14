@@ -30,7 +30,7 @@ class FavoritePage extends StatelessWidget {
             FavoriteMenuScreen(),
             Expanded(
               child: ListView.builder(
-                itemCount: 10,
+                itemCount: 20,
                 itemBuilder: (context, index) {
                   return const FavoriteCardViewDetails();
                 },

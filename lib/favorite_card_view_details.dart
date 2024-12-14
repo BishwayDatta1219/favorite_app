@@ -28,7 +28,7 @@ _buildCardViewDetails() {
         ),
       ),
       borderRadius: BorderRadius.circular(
-        AppSizes.borderRadius5,
+        AppSizes.borderRadius10,
       ),
     ),
     child: Padding(
