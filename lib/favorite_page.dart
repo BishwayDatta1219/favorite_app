@@ -22,13 +22,20 @@ class FavoritePage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppUIConst.moonBlackColor,
-      body: const SafeArea(
+      body: SafeArea(
         child: Column(
           children: [
             FavoriteAppbar(),
             FavoriteTopBar(),
             FavoriteMenuScreen(),
-            FavoriteCardViewDetails(),
+            Expanded(
+              child: ListView.builder(
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return const FavoriteCardViewDetails();
+                },
+              ),
+            ),
           ],
         ),
       ),
