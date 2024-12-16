@@ -1,125 +1,129 @@
 import 'package:favorite_app/app_utlis/app_sizes.dart';
 import 'package:favorite_app/app_utlis/app_ui_const.dart';
+import 'package:favorite_app/favorite_card_data.dart';
 import 'package:flutter/material.dart';
 
 class FavoriteCardViewDetails extends StatelessWidget {
-  const FavoriteCardViewDetails({super.key});
+  final FavoriteCardData data;
+
+  const FavoriteCardViewDetails({required this.data, super.key});
 
   @override
   Widget build(BuildContext context) {
-    return _buildCardViewDetails();
+    return _buildCardViewDetails(data); // Pass data here
   }
-}
 
-_buildCardViewDetails() {
-  return Container(
-    margin: const EdgeInsets.only(
-      left: AppSizes.mpg12,
-      top: AppSizes.mpg16,
-      right: AppSizes.mpg12,
-      bottom: AppSizes.mpg8,
-    ),
-    decoration: BoxDecoration(
-      color: AppUIConst.moonLightBlackColor,
-      border: Border(
-        left: BorderSide(
-          width: 7,
-          color: AppUIConst.lightGreenColor,
+  Widget _buildCardViewDetails(FavoriteCardData data) {
+    // Accept data here
+    return Container(
+      margin: const EdgeInsets.only(
+        left: AppSizes.mpg12,
+        top: AppSizes.mpg16,
+        right: AppSizes.mpg12,
+        bottom: AppSizes.mpg8,
+      ),
+      decoration: BoxDecoration(
+        color: AppUIConst.moonLightBlackColor,
+        border: Border(
+          left: BorderSide(
+            width: 7,
+            color: AppUIConst.lightGreenColor,
+          ),
+        ),
+        borderRadius: BorderRadius.circular(
+          AppSizes.borderRadius10,
         ),
       ),
-      borderRadius: BorderRadius.circular(
-        AppSizes.borderRadius10,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildCardViewHeaderRow(data), // Pass data here
+            _buildCardViewInfoRow(data), // Pass data here
+            _buildCardViewFooterRow(data), // Pass data here
+          ],
+        ),
       ),
-    ),
-    child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildCardViewHeaderRow(),
-          _buildCardViewInfoRow(),
-          _buildCardViewFooterRow(),
-        ],
-      ),
-    ),
-  );
-}
+    );
+  }
 
-_buildCardViewHeaderRow() {
-  return Row(
-    children: [
-      Text(
-        "AFCAGRO",
-        style: AppUIConst.subtitleTS.copyWith(
-          color: AppUIConst.whiteColor,
+  Widget _buildCardViewHeaderRow(FavoriteCardData data) {
+    return Row(
+      children: [
+        Text(
+          data.title,
+          style: AppUIConst.subtitleTS.copyWith(
+            color: AppUIConst.whiteColor,
+          ),
         ),
-      ),
-      Spacer(),
-      Text(
-        "9.3",
-        style: AppUIConst.subtitleTS.copyWith(
-          color: AppUIConst.whiteColor,
+        const Spacer(),
+        Text(
+          data.rating,
+          style: AppUIConst.subtitleTS.copyWith(
+            color: AppUIConst.whiteColor,
+          ),
         ),
-      ),
-      Spacer(),
-      Text(
-        "0.7",
-        style: AppUIConst.subtitleTS.copyWith(
-          color: AppUIConst.lightGreenColor,
+        const Spacer(),
+        Text(
+          data.change,
+          style: AppUIConst.subtitleTS.copyWith(
+            color: AppUIConst.lightGreenColor,
+          ),
         ),
-      ),
-    ],
-  );
-}
+      ],
+    );
+  }
 
-_buildCardViewInfoRow() {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      Text(
-        "Nav: 18.19  PE: 0",
-        style: AppUIConst.smallTS.copyWith(
-          color: AppUIConst.whiteColor.withOpacity(0.4),
+  Widget _buildCardViewInfoRow(FavoriteCardData data) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          "Nav: ${data.nav}  PE: ${data.pe}",
+          style: AppUIConst.smallTS.copyWith(
+            color: AppUIConst.whiteColor.withOpacity(0.4),
+          ),
         ),
-      ),
-      const SizedBox(
-        width: 65,
-      ),
-      Row(
-        children: [
-          Text(
-            "H: 9.4",
-            style: AppUIConst.smallTS.copyWith(
-              color: AppUIConst.lightGreenColor,
+        const SizedBox(
+          width: 65,
+        ),
+        Row(
+          children: [
+            Text(
+              "H: ${data.high}",
+              style: AppUIConst.smallTS.copyWith(
+                color: AppUIConst.lightGreenColor,
+              ),
             ),
-          ),
-          const SizedBox(
-            width: AppSizes.mpg4,
-          ),
-          Text(
-            "L: 8.7",
-            style: AppUIConst.smallTS.copyWith(
-              color: AppUIConst.lightRedColor,
+            const SizedBox(
+              width: AppSizes.mpg4,
             ),
-          ),
-        ],
-      ),
-      Spacer(),
-      Text(
-        "8.14%",
-        style: AppUIConst.buttonTS.copyWith(
-          color: AppUIConst.lightGreenColor,
+            Text(
+              "L: ${data.low}",
+              style: AppUIConst.smallTS.copyWith(
+                color: AppUIConst.lightRedColor,
+              ),
+            ),
+          ],
         ),
-      ),
-    ],
-  );
-}
+        const Spacer(),
+        Text(
+          data.percentage,
+          style: AppUIConst.buttonTS.copyWith(
+            color: AppUIConst.lightGreenColor,
+          ),
+        ),
+      ],
+    );
+  }
 
-_buildCardViewFooterRow() {
-  return Text(
-    "TK: 4,52,937.4  V:49,254  TRD: 50",
-    style: AppUIConst.smallTS.copyWith(
-      color: AppUIConst.whiteColor.withOpacity(0.4),
-    ),
-  );
+  Widget _buildCardViewFooterRow(FavoriteCardData data) {
+    return Text(
+      "TK: ${data.taka}  V: ${data.volume}  TRD: ${data.trade}",
+      style: AppUIConst.smallTS.copyWith(
+        color: AppUIConst.whiteColor.withOpacity(0.4),
+      ),
+    );
+  }
 }

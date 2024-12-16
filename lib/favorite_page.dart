@@ -1,5 +1,6 @@
 import 'package:favorite_app/app_utlis/app_ui_const.dart';
 import 'package:favorite_app/favorite_appbar.dart';
+import 'package:favorite_app/favorite_card_data.dart';
 import 'package:favorite_app/favorite_card_view_details.dart';
 import 'package:favorite_app/favorite_menu_screen.dart';
 import 'package:favorite_app/favorite_topbar.dart';
@@ -7,7 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class FavoritePage extends StatelessWidget {
-  const FavoritePage({super.key});
+  final List<FavoriteCardData> data;
+
+  const FavoritePage({required this.data, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +28,14 @@ class FavoritePage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            FavoriteAppbar(),
-            FavoriteTopBar(),
-            FavoriteMenuScreen(),
+            const FavoriteAppbar(),
+            const FavoriteTopBar(),
+            const FavoriteMenuScreen(),
             Expanded(
               child: ListView.builder(
-                itemCount: 20,
+                itemCount: data.length,
                 itemBuilder: (context, index) {
-                  return const FavoriteCardViewDetails();
+                  return FavoriteCardViewDetails(data: data[index]);
                 },
               ),
             ),
